@@ -1,0 +1,25 @@
+{
+  "name": "gulp-boilerplate",
+  "version": "1.0.0",
+  "description": "A simple boilerplate for front-end web development - using Gulp v4",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasWinkler/gulp-boilerplate.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulp-v4",
+    "boilerplate",
+    "front-end"
+  ],
+  "author": "Lucas Winkler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LucasWinkler/gulp-boilerplate/issues"
+  },
+  "homepage": "https://github.com/LucasWinkler/gulp-boilerplate#readme"
+}

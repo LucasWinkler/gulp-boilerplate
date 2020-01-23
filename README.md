@@ -2,7 +2,7 @@
 
 A simple boilerplate for front-end web development which uses [Gulp](https://gulpjs.com/) v4
 
-**Features**
+## Features
 
 - Live reloading
 - Cache busting

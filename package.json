@@ -6,8 +6,7 @@
   "scripts": {
     "start": "gulp watch",
     "build": "gulp",
-    "clean": "gulp clean",
-    "test": "--passWithNoTests"
+    "clean": "gulp clean"
   },
   "repository": {
     "type": "git",

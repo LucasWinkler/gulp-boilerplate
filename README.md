@@ -30,18 +30,18 @@ Follow these steps in order to get the website up and running locally on your ma
 ```bash
 ├── app
 │   ├── images
-│	│
+│   │
 │   ├── js
 │   │   └── main.js
 │   └── scss
 │       └── main.scss
 └── build
-	├── images
-	│	
+    ├── images
+    │	
     ├── js
-	│	└── app.min.js
-	└── css
-		└── styles.min.css
+    │   └── app.min.js
+    └── css
+        └── styles.min.css
 ```
 
 ## Tips

@@ -22,3 +22,7 @@ Follow these steps in order to get the website up and running locally on your ma
 ### Building
 
 - `npm run build` or `gulp` to build the application
+
+## Tips
+
+- You can use any file structure for your javascript and scss files. The one provided is an example.

@@ -25,6 +25,25 @@ Follow these steps in order to get the website up and running locally on your ma
 
 - `npm run build` or `gulp` to build the application
 
+## File Structure
+
+```bash
+├── app
+│   ├── images
+│	│
+│   ├── js
+│   │   └── main.js
+│   └── scss
+│       └── main.scss
+└── build
+	├── images
+	│	
+    ├── js
+	│	└── app.min.js
+	└── css
+		└── styles.min.css
+```
+
 ## Tips
 
 - You can use any file structure for your javascript and scss files. The one provided is an example.

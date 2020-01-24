@@ -8,9 +8,9 @@ This is my first time trying gulp so it won't be perfect. I just wanted to creat
 
 - Live reloading
 - Cache busting
-- SCSS: convert to css, sourcemaps, auto prefix and minifier
-- Javascript: sourcemaps, concat, minifier and supports ES6
-- Images: minifier
+- SCSS converted to css, auto prefixed and minified with sourcemaps)
+- Javascript concatenated into a single file, minified with sourcemaps and supports ES6)
+- Image minifying
 
 ## Getting Started
 
@@ -34,12 +34,16 @@ Follow these steps in order to get the website up and running locally on your ma
 │   ├── js
 │   │   ├── main.js
 │   │   │
-│   │   └── vendors (all vendor files are placed here)
+│   │   └── vendors
 │   │
 │   └── scss
-│       ├── main.scss
+│       ├── abstracts
 │       │
-│       └── pages (styles for separate pages will be in here)
+│       ├── base
+│       │
+│       ├── pages
+│       │
+│       └── main.scss
 └── build
     ├── images
     │

@@ -14,7 +14,7 @@ const replace = require('gulp-replace');
 const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
 
-var paths = {
+const paths = {
   html: {
     src: './app/**/*.html',
     dest: './build'

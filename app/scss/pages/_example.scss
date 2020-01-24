@@ -4,10 +4,15 @@
   text-align: center;
   font-family: $primary-font;
   height: 100vh;
-  color: #2661e0;
+  color: $primary-colour;
 
   h1 {
     font-size: 52px;
     margin: 16px 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #2661e0;
   }
 }

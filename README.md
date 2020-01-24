@@ -44,6 +44,7 @@ Follow these steps in order to get the website up and running locally on your ma
 │       ├── pages
 │       │
 │       └── main.scss
+│
 └── build
     ├── images
     │
@@ -51,6 +52,7 @@ Follow these steps in order to get the website up and running locally on your ma
     │   ├── app.min.js
     │   │
     │   └── vendors.min.js
+    │
     └── css
         └── styles.min.css
 ```

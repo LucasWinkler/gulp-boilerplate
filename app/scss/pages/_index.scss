@@ -1,23 +1,24 @@
-.example {
+#index-page {
   display: flex;
   align-items: center;
   text-align: center;
   font-family: $primary-font;
   height: 100vh;
   color: $primary-colour;
-}
 
-h1 {
-  font-size: 32px;
-  margin: 16px 0;
-}
+  h1 {
+    font-size: 32px;
+    margin: 16px 0;
+  }
 
-p {
-  font-size: 20px;
-  margin: 16px 0;
-}
+  p {
+    font-size: 20px;
+    margin: 16px 0;
+  }
 
-img {
-  max-width: 100%;
-  margin-bottom: 16px;
+  img {
+    width: 100%;
+    max-width: 50%;
+    margin-bottom: 16px;
+  }
 }

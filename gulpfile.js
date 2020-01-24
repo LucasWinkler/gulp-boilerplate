@@ -81,7 +81,7 @@ function cacheBust() {
 }
 
 // Watches all .scss, .js and .html changes and executes the corresponding task
-function watch() {
+function watchFiles() {
   browserSync.init({
     server: {
       baseDir: './build'
@@ -98,6 +98,8 @@ const build = gulp.series(
   gulp.parallel(styles, scripts, images),
   cacheBust
 );
+
+const watch = gulp.series(build, watchFiles);
 
 exports.clean = clean;
 exports.styles = styles;

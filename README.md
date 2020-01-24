@@ -32,14 +32,21 @@ Follow these steps in order to get the website up and running locally on your ma
 │   ├── images
 │   │
 │   ├── js
-│   │   └── main.js
+│   │   ├── main.js
+│   │   │
+│   │   └── vendors (all vendor files are placed here)
+│   │
 │   └── scss
-│       └── main.scss
+│       ├── main.scss
+│       │
+│       └── pages (styles for separate pages will be in here)
 └── build
     ├── images
-    │	
+    │
     ├── js
-    │   └── app.min.js
+    │   ├── app.min.js
+    │   │
+    │   └── vendors.min.js
     └── css
         └── styles.min.css
 ```

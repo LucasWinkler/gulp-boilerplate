@@ -29,7 +29,7 @@ var paths = {
   },
   vendors: {
     src: './app/js/vendors/**/*.js',
-    dest: './build/assets/js/vendors'
+    dest: './build/assets/js'
   },
   images: {
     src: './app/images/**/*',

@@ -12,28 +12,60 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const replace = require('gulp-replace');
 const imagemin = require('gulp-imagemin');
+const plumber = require('gulp-plumber');
 
 var paths = {
+  html: {
+    src: './app/**/*.html',
+    dest: './build'
+  },
   styles: {
     src: './app/scss/**/*.scss',
-    dest: './build/css/'
+    dest: './build/assets/css'
   },
   scripts: {
     src: './app/js/**/*.js',
-    dest: './build/js/'
+    dest: './build/assets/js'
+  },
+  vendors: {
+    src: './app/js/vendors/**/*.js',
+    dest: './build/assets/js/vendors'
   },
   images: {
     src: './app/images/**/*',
-    dest: './build/images/'
+    dest: './build/assets/images'
+  },
+  favicon: {
+    src: './app/favicon.ico',
+    dest: './build'
   }
 };
 
 const clean = () => del(['./build']);
 
+// Cache busting to prevent browser caching issues
+const curTime = new Date().getTime();
+function cacheBust() {
+  return gulp
+    .src(paths.html.src)
+    .pipe(plumber())
+    .pipe(replace(/cb=\d+/g, 'cb=' + curTime))
+    .pipe(gulp.dest(paths.html.dest));
+}
+
+// Copies all html files
+function html() {
+  return gulp
+    .src(paths.html.src)
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.html.dest));
+}
+
 // Convert scss to css, auto-prefix and rename into styles.min.css
 function styles() {
   return gulp
     .src(paths.styles.src)
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([autoprefixer(), cssnano()]))
@@ -52,6 +84,7 @@ function styles() {
 function scripts() {
   return gulp
     .src(paths.scripts.src)
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(
       babel({
@@ -64,20 +97,38 @@ function scripts() {
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
+// Minify all javascript vendors/libs and concat them into a single vendors.min.js
+function vendors() {
+  return gulp
+    .src(paths.vendors.src)
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(
+      babel({
+        presets: ['@babel/preset-env']
+      })
+    )
+    .pipe(terser())
+    .pipe(concat('vendors.min.js'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.vendors.dest));
+}
+
+// Copy and minify images
 function images() {
   return gulp
     .src(paths.images.src)
+    .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest(paths.images.dest));
 }
 
-// Cache busting to prevent browser caching issues
-const curTime = new Date().getTime();
-function cacheBust() {
+// Copy the favicon
+function favicon() {
   return gulp
-    .src('./app/index.html')
-    .pipe(replace(/cb=\d+/g, 'cb=' + curTime))
-    .pipe(gulp.dest('./build'));
+    .src(paths.favicon.src)
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.favicon.dest));
 }
 
 // Watches all .scss, .js and .html changes and executes the corresponding task
@@ -85,17 +136,21 @@ function watchFiles() {
   browserSync.init({
     server: {
       baseDir: './build'
-    }
+    },
+    notify: false
   });
+
   gulp.watch(paths.styles.src, styles);
+  gulp.watch(paths.vendors.src, vendors).on('change', browserSync.reload);
+  gulp.watch(paths.favicon.src, favicon).on('change', browserSync.reload);
   gulp.watch(paths.scripts.src, scripts).on('change', browserSync.reload);
   gulp.watch(paths.images.src, images).on('change', browserSync.reload);
-  gulp.watch('./app/*.html').on('change', browserSync.reload);
+  gulp.watch('./app/*.html', html).on('change', browserSync.reload);
 }
 
 const build = gulp.series(
   clean,
-  gulp.parallel(styles, scripts, images),
+  gulp.parallel(styles, vendors, scripts, images, favicon),
   cacheBust
 );
 
@@ -104,7 +159,9 @@ const watch = gulp.series(build, watchFiles);
 exports.clean = clean;
 exports.styles = styles;
 exports.scripts = scripts;
-exports.imagaes = images;
+exports.vendors = vendors;
+exports.images = images;
+exports.favicon = favicon;
 exports.watch = watch;
 exports.build = build;
 exports.default = build;

@@ -45,25 +45,24 @@ const clean = () => del(['./build']);
 
 // Cache busting to prevent browser caching issues
 const curTime = new Date().getTime();
-function cacheBust() {
-  return gulp
+const cacheBust = () =>
+  gulp
     .src(paths.html.src)
     .pipe(plumber())
     .pipe(replace(/cb=\d+/g, 'cb=' + curTime))
     .pipe(gulp.dest(paths.html.dest));
-}
+
 
 // Copies all html files
-function html() {
-  return gulp
+const html =() =>
+  gulp
     .src(paths.html.src)
     .pipe(plumber())
     .pipe(gulp.dest(paths.html.dest));
-}
 
 // Convert scss to css, auto-prefix and rename into styles.min.css
-function styles() {
-  return gulp
+const styles = () =>
+  gulp
     .src(paths.styles.src)
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -78,11 +77,10 @@ function styles() {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream());
-}
 
 // Minify all javascript files and concat them into a single app.min.js
-function scripts() {
-  return gulp
+const scripts = () =>
+  gulp
     .src(paths.scripts.src)
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -95,11 +93,10 @@ function scripts() {
     .pipe(concat('app.min.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.dest));
-}
 
 // Minify all javascript vendors/libs and concat them into a single vendors.min.js
-function vendors() {
-  return gulp
+const vendors = () =>
+  gulp
     .src(paths.vendors.src)
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -112,24 +109,21 @@ function vendors() {
     .pipe(concat('vendors.min.js'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.vendors.dest));
-}
 
 // Copy and minify images
-function images() {
-  return gulp
+const images = () =>
+  gulp
     .src(paths.images.src)
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest(paths.images.dest));
-}
 
 // Copy the favicon
-function favicon() {
-  return gulp
+const favicon = () =>
+  gulp
     .src(paths.favicon.src)
     .pipe(plumber())
     .pipe(gulp.dest(paths.favicon.dest));
-}
 
 // Watches all .scss, .js and .html changes and executes the corresponding task
 function watchFiles() {
